@@ -1,18 +1,20 @@
 # pip install requests
 
-from pprint import pprint
-
 import requests
 from lxml import html
+from pprint import pprint
+
+URL = 'https://www.fakeaddressgenerator.com/World_Address/get_us_address/state/CA'
 
 
 def get_xpath_value():
-    link = 'https://www.fakeaddressgenerator.com/World_Address/get_us_address/state/CA'
     selector = '//div[div/span[contains(text(), \'{name}\')]]{tag}'
     input_ = '//input/@value'
     strong = '//strong/text()'
-    response = requests.get(link)
+
+    response = requests.get(URL)
     root = html.fromstring(response.content)
+
     input_names = [
         'Full Name', 'Gender', 'Birthday', 'Driver License',
         'Social Security Number', 'Street', 'City', 'State',
